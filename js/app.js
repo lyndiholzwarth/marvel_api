@@ -1,12 +1,29 @@
 $(document).ready(function(){
 
-	$('#search-term').submit(function(event){
-		event.preventDefault();
-		searchTerm=$('#query').val();
-		getRequest(searchTerm);
+//sticky header, with size adjustment
+	$(window).scroll(function() {
+	if ($(this).scrollTop() > 1){  
+	    $('header').addClass("sticky");
+	    $('.marvelLogo').addClass("sticky");
+	    $('.topNav').addClass("sticky");
+	    $('br').addClass('hidden');
+	  }
+	  else{
+	    $('header').removeClass("sticky");
+	    $('.marvelLogo').removeClass("sticky");
+	   	$('.topNav').removeClass("sticky");
+	   	$('br').removeClass('hidden');
+	  }
 	});
 
-});
+		$('#search-term').submit(function(event){
+			event.preventDefault();
+			searchTerm=$('#query').val();
+			getRequest(searchTerm);
+		});
+
+	});
+
 
 function getRequest(searchTerm){
 	var params= {
