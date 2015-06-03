@@ -27,7 +27,7 @@ header.sticky {
 	font-family: 'Roboto', sans-serif;
 	font-size: 48pt;
 	color:#E6E6E6;
-	/*text-align: center;*/
+	margin-left: 425px;
 	padding-top: 15px;
 	padding-left: -50px;
 }
@@ -36,15 +36,22 @@ header.sticky {
 	font-size: 28px;
 	transition: all 0.4s ease;
 	padding-top: 15px;
+	float: right;
+	margin-right: 20px;
+	margin-left: 0px;
 }
 
 .hidden{
 	display: none;
 }
 
+.contentArea{
+	min-height: 200px;
+}
+
 .directions{
 	font-family: 'Roboto', sans-serif;
-	font-size: 24px;
+	font-size: 24pt;
 	margin-left: 5%;
 	margin-right: 5%;
 	margin-top: 200px;	
@@ -68,7 +75,7 @@ header.sticky {
 	padding: 10px;
 	margin: 1em auto 1em auto;
 	width: 80%;
-	padding-left: 50px;
+	padding-left: 40px;
 }
 
 .characterImg{
@@ -76,6 +83,7 @@ header.sticky {
 	margin-right: 40px;
 	height:180px;
 	padding-left: 10px;
+	padding-bottom: 10px;
 }
 
 .text{
@@ -106,3 +114,77 @@ footer{
 	text-align: center;
 	padding-top: 15px;
 }
+
+
+
+/*--------Responsive Fixes--------------*/
+
+@media only screen and (max-width: 1200px) {
+	.topNav{
+		font-size: 40pt;
+	}
+
+	.result{
+		padding-left: 20px;
+	}
+
+	.cover-img{
+		height:150px;
+	}
+	
+}
+
+@media only screen and (max-width: 1000px) {
+	.topNav{
+		font-size: 30pt;
+		padding-top: 25px;
+	}
+
+	.directions{
+		font-size: 20pt;
+	}
+
+	.result{
+		padding: 5px;
+	}
+
+	.characterImg{
+		height:150px;
+	}
+
+	.cover-img{
+		height:100px;
+	}
+}
+
+
+@media only screen and (max-width: 790px) {
+	.topNav{
+		font-size: 24pt;
+		padding-top: 15px;
+	}
+
+	.topNav.sticky{
+		font-size: 14pt;
+	}
+
+	.result{
+		padding: 5px;
+	}
+
+	.characterImg{
+		height:175px;
+		float: left;
+		padding-left: 0px;
+		margin-right: 10px;
+	}
+
+	.cover-img{
+		height:175px;
+		float: left;
+	}
+}
+
+
+
+
