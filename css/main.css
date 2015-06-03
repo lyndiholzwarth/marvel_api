@@ -1,3 +1,61 @@
 .marvelLogo{
-	
+	height:125px;
+}
+
+.topNav{
+	font-family: 'Roboto', sans-serif;
+	font-size: 48pt;
+	text-align: center;
+	margin-top: -100px;
+}
+
+.directions{
+	font-family: 'Roboto', sans-serif;
+	font-size: 20pt;
+	text-align: center;
+	margin-top: 60px;
+	margin-bottom: 20px;
+}
+
+.searchbox{
+	margin-left:525px;
+	margin-bottom: 25px;
+}
+
+.lg-box{
+	height: 30px;
+	width: 250px;
+	margin-right: 25px;
+}
+
+.result {
+	border: 1px solid black;
+	padding: 10px;
+	margin: 1em auto 1em auto;
+	width: 80%;
+	padding-left: 50px;
+}
+
+.characterImg{
+	float: right;
+	margin-right: 40px;
+	height:180px;
+	padding-left: 10px;
+}
+
+.text{
+	min-height:200px;
+}
+
+.topic{
+	font-family: 'Roboto', sans-serif;
+	font-weight: bold;
+	font-size: 20px;
+	margin-top: 20px;
+	margin-bottom: 5px;
+}
+
+.cover-img{
+	height: 175px;
+	margin-bottom: 25px;
 }

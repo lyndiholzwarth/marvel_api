@@ -8,18 +8,61 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<!--google fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700' rel='stylesheet' type='text/css'>
 	<!---reset-->
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<!--coded CSS and javascript-->
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<script src="js/app.js"></script>
-	<title></title>
+	<title>Marvel Character Search</title>
 
 <body>
+<div class="container-fluid">
 <!--http://img2.wikia.nocookie.net/__cb20130326054506/logopedia/images/thumb/0/04/MarvelLogo.svg/388px-MarvelLogo.svg.png logo info-->
-<div><img src="http://img2.wikia.nocookie.net/__cb20130326054506/logopedia/images/thumb/0/04/MarvelLogo.svg/388px-MarvelLogo.svg.png" alt="Marvel Logo">
-</div>
+	<div><img src="http://img2.wikia.nocookie.net/__cb20130326054506/logopedia/images/thumb/0/04/MarvelLogo.svg/388px-MarvelLogo.svg.png" alt="Marvel Logo" class="marvelLogo">
+		<h1 class="topNav">Character Search</h1>
+	</div>
 
+	<div>
+		<h2 class="directions">Enter the first 3 (or more) letters to find new characters!</h2>
+	</div>
+
+	<div>
+	<form class="searchbox" id="search-term">
+			<input type="text" class="lg-box" id="query" placeholder="Name"/>
+			<button>Submit</button>
+		</form>
+	</div>
+
+	<div class="templates ">
+		<div class="result character">
+			<div class="text">
+				<div><img src="images/captainAmerica_standard_xlarge.jpg" class="characterImg">
+				</div>
+				
+				<div><p class="topic">Name:</p>
+					<div class="character-name">Captain America</div>
+				</div>
+				
+				<div><p class="topic">Description:</p>
+					<div class="description">Vowing to serve his country any way he could, young Steve Rogers took the super soldier serum to become America's one-man army. Fighting for the red, white and blue for over 60 years, Captain America is the living, breathing symbol of freedom and liberty.</div>
+				</div>
+			</div>
+			<div><p class="topic">Comics In:</p>
+				<div class="row">
+					<div class="col-md-2"><img src="images/cover(1).jpg" class="cover-img"></div>
+					<div class="col-md-2"><img src="images/cover(2).jpg" class="cover-img"></div>
+					<div class="col-md-2"><img src="images/cover(3).jpg" class="cover-img"></div>
+					<div class="col-md-2"><img src="images/cover(4).jpg" class="cover-img"></div>
+					<div class="col-md-2"><img src="images/cover(5).jpg" class="cover-img"></div>
+					<div class="col-md-2"><img src="images/cover(6).jpg" class="cover-img"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
 
 </body>
 </html>
