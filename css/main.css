@@ -46,7 +46,7 @@ header.sticky {
 }
 
 .contentArea{
-	min-height: 200px;
+	min-height: 800px;
 }
 
 .directions{
@@ -81,7 +81,7 @@ header.sticky {
 .characterImg{
 	float: right;
 	margin-right: 40px;
-	height:180px;
+	height:200px;
 	padding-left: 10px;
 	padding-bottom: 10px;
 }
@@ -99,8 +99,12 @@ header.sticky {
 }
 
 .cover-img{
-	height: 175px;
+	height: 250px;
 	margin-bottom: 25px;
+}
+
+.eventsLink{
+
 }
 
 footer{
@@ -129,7 +133,7 @@ footer{
 	}
 
 	.cover-img{
-		height:150px;
+		height:225px;
 	}
 	
 }
@@ -149,11 +153,11 @@ footer{
 	}
 
 	.characterImg{
-		height:150px;
+		height:175px;
 	}
 
 	.cover-img{
-		height:100px;
+		height:175px;
 	}
 }
 
@@ -173,15 +177,15 @@ footer{
 	}
 
 	.characterImg{
-		height:175px;
 		float: left;
 		padding-left: 0px;
 		margin-right: 10px;
 	}
 
 	.cover-img{
-		height:175px;
 		float: left;
+		padding-left: 5px;
+		padding-right: 5px;
 	}
 }
 

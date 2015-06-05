@@ -1,55 +1,54 @@
 $(document).ready(function(){
 
-//sticky header, with size adjustment
+	//sticky header, with size adjustment
 	$(window).scroll(function() {
 	if ($(this).scrollTop() > 1){  
 	    $('header').addClass("sticky");
 	    $('.marvelLogo').addClass("sticky");
 	    $('.topNav').addClass("sticky");
-	    $('br').addClass('hidden');
+	    $('.title').addClass('hidden');
 	  }
 	  else{
 	    $('header').removeClass("sticky");
 	    $('.marvelLogo').removeClass("sticky");
 	   	$('.topNav').removeClass("sticky");
-	   	$('br').removeClass('hidden');
+	   	$('.title').removeClass('hidden');
 	  }
 	});
 
-		$('#search-term').submit(function(event){
-			event.preventDefault();
-			searchTerm=$('#query').val();
-			getRequest(searchTerm);
-		});
-
+	//get search box entry
+	$('#search-term').submit(function(event){
+		event.preventDefault();
+		searchTerm=$('#query').val();
+		getRequest(searchTerm);
 	});
+
+});
 
 
 function getRequest(searchTerm){
 	var params= {
-    part: 'snippet',
-    // part:'id',
-		q: searchTerm,
-    key: 'AIzaSyDOWKFst7ZoY1tmQ95yYdX-bop9QPRJwxk'
-    // r: 'json',
+	nameStartsWith: searchTerm,
+	orderBy: 'name',
+	apikey: 'a7ad0b28f4e990a41a767a654ea505e1',
 	};
-  	url = 'https://www.googleapis.com/youtube/v3/search';
+  	url = '//www.developer.marvel.com:80/v1/public/characters';
   	$.getJSON(url, params, function(data){
       console.log(data);
-      var myData= data.items;
+      // var myData= data.items;
       // console.log(myData);
     	// $.each(myData)
-      showResults(data.items);
+      // showResults(data.items);
   	});
 };
 
-function showResults(results){
-    var html="";
-   // 'https://www.youtube.com/watch?v='
-    $.each(results, function(index,value){
-      html += '<a href="https://www.youtube.com/watch?v='+value.id.videoId+'" target="_blank">';
-    	html += '<img src='+value.snippet.thumbnails.medium.url+' />';
-      html+='</a>';
-        $('.search-results').html(html);
-    });
-};
+// function showResults(results){
+//     var html="";
+//    // 'https://www.youtube.com/watch?v='
+//     $.each(results, function(index,value){
+//       html += '<a href="https://www.youtube.com/watch?v='+value.id.videoId+'" target="_blank">';
+//     	html += '<img src='+value.snippet.thumbnails.medium.url+' />';
+//       html+='</a>';
+//         $('.search-results').html(html);
+//     });
+// };
