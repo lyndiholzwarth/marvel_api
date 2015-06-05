@@ -20,6 +20,7 @@ $(document).ready(function(){
 	$('#search-term').submit(function(event){
 		event.preventDefault();
 		searchTerm=$('#query').val();
+		console.log(searchTerm)
 		getRequest(searchTerm);
 	});
 
@@ -32,8 +33,8 @@ function getRequest(searchTerm){
 	orderBy: 'name',
 	apikey: 'a7ad0b28f4e990a41a767a654ea505e1',
 	};
-  	url = '//www.developer.marvel.com:80/v1/public/characters';
-  	$.getJSON(url, params, function(data){
+  	// url = '//developer.marvel.com/v1/public/characters';
+  	$.getJSON('//developer.marvel.com/v1/public/characters', params, function(data){
       console.log(data);
       // var myData= data.items;
       // console.log(myData);
