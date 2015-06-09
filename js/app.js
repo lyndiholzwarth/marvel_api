@@ -24,8 +24,8 @@ $(document).ready(function(){
 		getRequest(searchTerm);
 	});
 
-	// this function takes the question object returned by StackOverflow and creates new result to be appended to DOM
-	var showCharacter = function(charName) {
+// 	
+var showCharacter = function(data) {
 	
 	// clone our result template code
 	var result = $('.templates .character').clone();
@@ -56,20 +56,43 @@ $(document).ready(function(){
 
 
 function getRequest(searchTerm){
-	var params= {
+	var request= {
 	nameStartsWith: searchTerm,
 	orderBy: 'name',
 	apikey: 'a7ad0b28f4e990a41a767a654ea505e1',
 	};
-  	url = '//developer.marvel.com/v1/public/characters';
-  	$.getJSON(url, params, function(data){
-      console.log(data);
-      // var myData= data.items;
-      // console.log(myData);
-    	// $.each(myData)
-      // showResults(data.items);
-  	});
+  	// url = '//gateway.marvel.com:80/v1/public/characters';	
+	var result = $.ajax({
+		url: "//gateway.marvel.com:80/v1/public/characters",
+		data: request,
+		dataType: "json",
+		type: "GET",
+		})
+	.done(function(result){
+		console.log(result);
+		var i=result.data.count;
+		console.log(i);
+		var name=result.data.results[0].name;
+		console.log(name);
+
+		// var searchResults = showSearchResults(request.nameStartsWith, result.data.count);
+		// console.log(searchResults);
+
+		// $('.search-results').html(searchResults);
+
+		$.each(result.data, function(i, data) {
+			console.log(data);
+			var showCharacter = showCharacter(data);
+			$('.results').append(showCharacter);
+		});
+	})
+	.fail(function(jqXHR, error, errorThrown){
+		var errorElem = showError(error);
+		$('.search-results').append(errorElem);
+	});
 };
+
+
 
 // function showResults(results){
 //     var html="";
