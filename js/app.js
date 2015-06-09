@@ -24,6 +24,34 @@ $(document).ready(function(){
 		getRequest(searchTerm);
 	});
 
+	// this function takes the question object returned by StackOverflow and creates new result to be appended to DOM
+	var showCharacter = function(charName) {
+	
+	// clone our result template code
+	var result = $('.templates .character').clone();
+
+	//set image
+	var characterThumb = result.find('.characterImg');
+	// characterName.text(thumbnail.path)
+	
+	//set character name
+	var characterName = result.find('.character-name');
+	characterName.text(name);
+
+	// Set comic covers
+	var covers = result.find('.cover-img');
+	covers.attr('src', comics.items.resourceURI);
+	
+	// set events
+	var comicEvent = result.find('events a');
+	comicEvent.attr('href', events.items.resourceURI);
+	comicEvent.text(events.items.name);
+
+
+	return result;
+};
+
+
 });
 
 
@@ -33,8 +61,8 @@ function getRequest(searchTerm){
 	orderBy: 'name',
 	apikey: 'a7ad0b28f4e990a41a767a654ea505e1',
 	};
-  	// url = '//developer.marvel.com/v1/public/characters';
-  	$.getJSON('//developer.marvel.com/v1/public/characters', params, function(data){
+  	url = '//developer.marvel.com/v1/public/characters';
+  	$.getJSON(url, params, function(data){
       console.log(data);
       // var myData= data.items;
       // console.log(myData);
