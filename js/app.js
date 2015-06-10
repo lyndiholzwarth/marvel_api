@@ -25,27 +25,27 @@ $(document).ready(function(){
 	});
 
 // 	
-var showCharacter = function(data) {
+var showCharacter = function(charSearch) {
 	
 	// clone our result template code
 	var result = $('.templates .character').clone();
 
 	//set image
-	var characterThumb = result.find('.characterImg');
+	// var characterThumb = result.find('.characterImg');
 	// characterName.text(thumbnail.path)
 	
 	//set character name
 	var characterName = result.find('.character-name');
-	characterName.text(name);
+	characterName.text(charSearch.name);
 
 	// Set comic covers
-	var covers = result.find('.cover-img');
-	covers.attr('src', comics.items.resourceURI);
+	// var covers = result.find('.cover-img');
+	// covers.attr('src', comics.items.resourceURI);
 	
-	// set events
-	var comicEvent = result.find('events a');
-	comicEvent.attr('href', events.items.resourceURI);
-	comicEvent.text(events.items.name);
+	// // set events
+	// var comicEvent = result.find('events a');
+	// comicEvent.attr('href', events.items.resourceURI);
+	// comicEvent.text(events.items.name);
 
 
 	return result;
@@ -69,22 +69,27 @@ function getRequest(searchTerm){
 		type: "GET",
 		})
 	.done(function(result){
-		console.log(result);
-		var i=result.data.count;
-		console.log(i);
-		var name=result.data.results[0].name;
-		console.log(name);
+		console.log(result.data.results);
+		// var i=result.data.count;
+		// console.log(i);
+		// var dataName=result.data.results;
 
-		// var searchResults = showSearchResults(request.nameStartsWith, result.data.count);
-		// console.log(searchResults);
-
-		// $('.search-results').html(searchResults);
-
-		$.each(result.data, function(i, data) {
-			console.log(data);
-			var showCharacter = showCharacter(data);
-			$('.results').append(showCharacter);
-		});
+		$.each(result.data.results, function(i, item){
+			console.log(item);
+			var characterInfo = showCharacter(item);
+			$('.results').append(characterInfo);
+ 		});
+  //   $.each(dataName, function(index,value){
+  //   	console.log(value.name);
+  //    //  html += '<a href="https://www.youtube.com/watch?v='+value.id.videoId+'" target="_blank">';
+  //   	// html += '<img src='+value.snippet.thumbnails.medium.url+' />';
+  //    //  html+='</a>';
+  //    //    $('.search-results').html(html);
+		// // $.each(result.data, function(i, data) {
+		// // 	console.log(data);
+		// 	// var showCharacter = showCharacter(result);
+		// 	$('.results').append(showCharacter(dataName));
+		// });
 	})
 	.fail(function(jqXHR, error, errorThrown){
 		var errorElem = showError(error);
