@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
 	//sticky header, with size adjustment
 	$(window).scroll(function() {
 	if ($(this).scrollTop() > 1){  
@@ -18,42 +17,40 @@ $(document).ready(function(){
 
 	//get search box entry
 	$('#search-term').submit(function(event){
+		// zero out results if previous search has run
+		$('.results').html('');
 		event.preventDefault();
-		searchTerm=$('#query').val();
+		// get the value of the tags the user submitted
+		var searchTerm=$('#query').val();
 		console.log(searchTerm)
 		getRequest(searchTerm);
 	});
-
-// 	
-var showCharacter = function(charSearch) {
-	
-	// clone our result template code
-	var result = $('.templates .character').clone();
-
-	//set image
-	// var characterThumb = result.find('.characterImg');
-	// characterName.text(thumbnail.path)
-	
-	//set character name
-	var characterName = result.find('.character-name');
-	characterName.text(charSearch.name);
-
-	// Set comic covers
-	// var covers = result.find('.cover-img');
-	// covers.attr('src', comics.items.resourceURI);
-	
-	// // set events
-	// var comicEvent = result.find('events a');
-	// comicEvent.attr('href', events.items.resourceURI);
-	// comicEvent.text(events.items.name);
-
-
-	return result;
-};
-
-
 });
+// 	
+	var showCharacter = function(item) {
+		$('.templates').removeClass('.hidden');
+		// clone our result template code
+		var result = $('.templates .character').clone();
 
+		//set image
+		// var characterThumb = result.find('.characterImg');
+		// characterThumb.attr('src', item.thumbnail.path+'.jpg')
+		
+		//set character name
+		var characterName = result.find('.character-name');
+		characterName.text(item.name);
+
+		// Set comic covers
+		var covers = result.find('.cover-img');
+		covers.attr('src', item.comics.items.resourceURI);
+		
+		// // set events
+		var comicEvent = result.find('events a');
+		comicEvent.attr('href', item.events.items.resourceURI);
+		comicEvent.text(item.events.items.name);
+
+		return result;
+	};
 
 function getRequest(searchTerm){
 	var request= {
@@ -69,14 +66,11 @@ function getRequest(searchTerm){
 		type: "GET",
 		})
 	.done(function(result){
-		console.log(result.data.results);
-		// var i=result.data.count;
-		// console.log(i);
-		// var dataName=result.data.results;
 
 		$.each(result.data.results, function(i, item){
 			console.log(item);
 			var characterInfo = showCharacter(item);
+			// console.log("declare")
 			$('.results').append(characterInfo);
  		});
   //   $.each(dataName, function(index,value){
