@@ -27,10 +27,12 @@ $(document).ready(function(){
 	});
 });
 // 	
-	var showCharacter = function(item) {
-		$('.templates').removeClass('.hidden');
+	var showCharacter = function(searchedName) {
+		// $('.template').removeClass('hidden');
+		// $('.templates').addClass('visible');
 		// clone our result template code
-		var result = $('.templates .character').clone();
+		var result = $('.template .character').clone();
+		console.log("0");
 
 		//set image
 		// var characterThumb = result.find('.characterImg');
@@ -38,27 +40,30 @@ $(document).ready(function(){
 		
 		//set character name
 		var characterName = result.find('.character-name');
-		characterName.text(item.name);
-
+		// $('.character-name').text(searchedName.name);
+		characterName.text(searchedName.name);
+console.log(searchedName.name);
 		// Set comic covers
 		var covers = result.find('.cover-img');
-		covers.attr('src', item.comics.items.resourceURI);
-		
+		// covers.attr('src', searchedName.comics.items.resourceURI);
+		console.log(covers);
+
 		// // set events
-		var comicEvent = result.find('events a');
-		comicEvent.attr('href', item.events.items.resourceURI);
-		comicEvent.text(item.events.items.name);
+		var comicEvent = result.find('.events a');
+		// comicEvent.attr('href', searchedName.events.items.resourceURI);
+		// comicEvent.text(searchedName.events.items.name);
+		console.log(comicEvent);
 
 		return result;
+		console.log("yay");
 	};
 
 function getRequest(searchTerm){
-	var request= {
+	var request = {
 	nameStartsWith: searchTerm,
 	orderBy: 'name',
 	apikey: 'a7ad0b28f4e990a41a767a654ea505e1',
 	};
-  	// url = '//gateway.marvel.com:80/v1/public/characters';	
 	var result = $.ajax({
 		url: "//gateway.marvel.com:80/v1/public/characters",
 		data: request,
@@ -66,24 +71,11 @@ function getRequest(searchTerm){
 		type: "GET",
 		})
 	.done(function(result){
-
 		$.each(result.data.results, function(i, item){
 			console.log(item);
 			var characterInfo = showCharacter(item);
-			// console.log("declare")
-			$('.results').append(characterInfo);
+			$('.result').append(characterInfo);
  		});
-  //   $.each(dataName, function(index,value){
-  //   	console.log(value.name);
-  //    //  html += '<a href="https://www.youtube.com/watch?v='+value.id.videoId+'" target="_blank">';
-  //   	// html += '<img src='+value.snippet.thumbnails.medium.url+' />';
-  //    //  html+='</a>';
-  //    //    $('.search-results').html(html);
-		// // $.each(result.data, function(i, data) {
-		// // 	console.log(data);
-		// 	// var showCharacter = showCharacter(result);
-		// 	$('.results').append(showCharacter(dataName));
-		// });
 	})
 	.fail(function(jqXHR, error, errorThrown){
 		var errorElem = showError(error);

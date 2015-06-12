@@ -45,6 +45,10 @@ header.sticky {
 	display: none;
 }
 
+.visible{
+	visibility: visible;
+}
+
 .contentArea{
 	min-height: 800px;
 }
