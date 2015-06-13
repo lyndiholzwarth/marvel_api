@@ -35,23 +35,24 @@ $(document).ready(function(){
 		console.log("0");
 
 		//set image
-		// var characterThumb = result.find('.characterImg');
-		// characterThumb.attr('src', item.thumbnail.path+'.jpg')
+		var characterThumb = result.find('.characterImg');
+		characterThumb.attr('src', searchedName.thumbnail.path + '/standard_medium.jpg')
 		
 		//set character name
 		var characterName = result.find('.character-name');
 		// $('.character-name').text(searchedName.name);
 		characterName.text(searchedName.name);
 console.log(searchedName.name);
+
 		// Set comic covers
 		var covers = result.find('.cover-img');
 		// covers.attr('src', searchedName.comics.items.resourceURI);
 		console.log(covers);
 
-		// // set events
+		// set events
 		var comicEvent = result.find('.events a');
-		// comicEvent.attr('href', searchedName.events.items.resourceURI);
-		// comicEvent.text(searchedName.events.items.name);
+		comicEvent.attr('href', searchedName.events.items.resourceURI);
+		comicEvent.text(searchedName.events.items.name);
 		console.log(comicEvent);
 
 		return result;
@@ -74,7 +75,7 @@ function getRequest(searchTerm){
 		$.each(result.data.results, function(i, item){
 			console.log(item);
 			var characterInfo = showCharacter(item);
-			$('.result').append(characterInfo);
+			$('.results').append(characterInfo);
  		});
 	})
 	.fail(function(jqXHR, error, errorThrown){
