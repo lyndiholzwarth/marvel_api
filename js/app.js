@@ -36,24 +36,27 @@ $(document).ready(function(){
 
 		//set image
 		var characterThumb = result.find('.characterImg');
-		characterThumb.attr('src', searchedName.thumbnail.path + '/standard_medium.jpg')
+		characterThumb.attr('src', searchedName.thumbnail.path + '/portrait_fantastic.'+ searchedName.thumbnail.extension)
 		
 		//set character name
 		var characterName = result.find('.character-name');
-		// $('.character-name').text(searchedName.name);
 		characterName.text(searchedName.name);
-console.log(searchedName.name);
+		console.log(searchedName.name);
+
+		//  Set character description
+		var charDescription = result.find('.description');
+		charDescription.text(searchedName.description);
 
 		// Set comic covers
 		var covers = result.find('.cover-img');
-		// covers.attr('src', searchedName.comics.items.resourceURI);
-		console.log(covers);
+		covers.attr('src', searchedName.comics.items.resourceURI);
+		// console.log(covers);
 
 		// set events
 		var comicEvent = result.find('.events a');
 		comicEvent.attr('href', searchedName.events.items.resourceURI);
 		comicEvent.text(searchedName.events.items.name);
-		console.log(comicEvent);
+		// console.log(comicEvent);
 
 		return result;
 		console.log("yay");
