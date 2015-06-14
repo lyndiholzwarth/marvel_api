@@ -26,42 +26,62 @@ $(document).ready(function(){
 		getRequest(searchTerm);
 	});
 });
-// 	
-	var showCharacter = function(searchedName) {
-		// $('.template').removeClass('hidden');
-		// $('.templates').addClass('visible');
-		// clone our result template code
-		var result = $('.template .character').clone();
-		console.log("0");
 
-		//set image
-		var characterThumb = result.find('.characterImg');
+//show results function
+var showCharacter = function(searchedName) {
+
+	// clone our result template code
+	var result = $('.template .character').clone();
+
+	//set image
+	var characterThumb = result.find('.characterImg');
+	if (searchedName.thumbnail===null){
+		console.log("no picture");
+		characterThumb.attr('alt', "Sorry, no picture available");
+	}
+	else{
 		characterThumb.attr('src', searchedName.thumbnail.path + '/portrait_fantastic.'+ searchedName.thumbnail.extension)
-		
-		//set character name
-		var characterName = result.find('.character-name');
-		characterName.text(searchedName.name);
-		console.log(searchedName.name);
+	};
+	
+	//set character name
+	var characterName = result.find('.character-name');
+	characterName.text(searchedName.name);
+	console.log(searchedName.name);
 
-		//  Set character description
-		var charDescription = result.find('.description');
+	//  Set character description
+	var charDescription = result.find('.description');
+	if (searchedName.description===""){
+		console.log("no description");
+		charDescription.text("Sorry, no description");
+	}
+	else{
 		charDescription.text(searchedName.description);
-
-		// Set comic covers
-		var covers = result.find('.cover-img');
-		covers.attr('src', searchedName.comics.items.resourceURI);
-		// console.log(covers);
-
-		// set events
-		var comicEvent = result.find('.events a');
-		comicEvent.attr('href', searchedName.events.items.resourceURI);
-		comicEvent.text(searchedName.events.items.name);
-		// console.log(comicEvent);
-
-		return result;
-		console.log("yay");
 	};
 
+	// Set comic covers
+	var covers = result.find('.cover-img');
+
+	// set events
+	var comicEvent = result.find('.events a');
+	if (searchedName.events.returned===0){
+		console.log("no events");
+		comicEvent.text("Sorry, no major events to share")
+	}
+	else{
+	comicEvent.attr('href', searchedName.events.items[0].resourceURI+"?apikey=a7ad0b28f4e990a41a767a654ea505e1");
+	comicEvent.text(searchedName.events.items[0].name);
+	console.log(searchedName.events.items[0].resourceURI+"?apikey=a7ad0b28f4e990a41a767a654ea505e1");
+	}
+	// console.log(comicEvent);
+//resesoure uri gives id # of story http://gateway.marvel.com/v1/public/events/116?apikey=a7ad0b28f4e990a41a767a654ea505e1
+
+
+	return result;
+	console.log("yay");
+};
+
+
+//character search function
 function getRequest(searchTerm){
 	var request = {
 	nameStartsWith: searchTerm,
@@ -88,14 +108,25 @@ function getRequest(searchTerm){
 };
 
 
+//event call function
+function getEvents(givenIdNumber){
+	var eventRequest = {
+	nameStartsWith: searchTerm,
+	orderBy: 'name',
+	apikey: 'a7ad0b28f4e990a41a767a654ea505e1',
+	};
+	var eventResult = $.ajax({
+		url: "//gateway.marvel.com:80/v1/public/events/",
+		data: request,
+		dataType: "json",
+		type: "GET",
+		})
+	.done(function(eventResult){
+		console.log(eventResult)
+	})
+}
 
-// function showResults(results){
-//     var html="";
-//    // 'https://www.youtube.com/watch?v='
-//     $.each(results, function(index,value){
-//       html += '<a href="https://www.youtube.com/watch?v='+value.id.videoId+'" target="_blank">';
-//     	html += '<img src='+value.snippet.thumbnails.medium.url+' />';
-//       html+='</a>';
-//         $('.search-results').html(html);
-//     });
-// };
+
+
+
+
