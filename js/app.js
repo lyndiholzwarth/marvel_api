@@ -59,24 +59,19 @@ var showCharacter = function(searchedName) {
 	};
 
 	// Set comic covers
-	// var cover = result.find('.cover-img');
-	// if (searchedName.comics.available>0){
+
+
+	//if searched name, has comics to show, show them, if not, do nothing
+	// to show comics, use id# to run through "get request"
+	
 	if (searchedName.comics.available>0){
-		showComic(searchedName.id);
+		var inputId=searchedName.id;
+		console.log("comics here!")
+		getCoverImg(inputId);
 	}
 	else{
 		console.log("no comics")
 	};
-
-	// 	// cover.attr('src', item.thumbnail.path+'/portrait_fantastic.'+ item.thumbnail.extension)
-	// 	var coverResult = $('.coverResult').clone();
-	// 	$('.cover-img').attr('src', characterId.thumbnail.path+'/portrait_fantastic.'+ characterId.thumbnail.extension)
-	// 	return coverResult;
-
-	// }
-	// else{
-	// 	console.log("no comics")
-	// };
 
 //for each comic, load img
 	// http://placcehold.it/168x252?text=cover-img
@@ -102,14 +97,15 @@ var showCharacter = function(searchedName) {
 };
 
 // Set comic covers
-var showComic = function(cover) {
-	// var cover = result.find('.cover-img');
-	// var coverResult = $('.cover-img').clone();
-		// cover.attr('src', item.thumbnail.path+'/portrait_fantastic.'+ item.thumbnail.extension)
-		getCoverImg(searchedName)
-		console.log("look here"+searchedName)
-	var coverResult = $('.coverResult').clone();
-	// $('.cover-img').attr('src', characterId.thumbnail.path+'/portrait_fantastic.'+ characterId.thumbnail.extension)
+var showComic = function(coverImg) {
+	var coverResult = $('.template .coverResult').clone();
+	
+	var comicCover=coverResult.find('.cover-img');
+	
+	comicCover.attr('src', 'http://placcehold.it/168x252?text=cover-img')
+		// coverImg.thumbnail.path+'/portrait_fantastic.'+ coverImg.thumbnail.extension);
+	console.log("cover info"+coverImg.title)
+
 	return coverResult;
 };
 
@@ -134,15 +130,16 @@ function getRequest(searchTerm){
  		});
 	})
 	.fail(function(jqXHR, error, errorThrown){
+		console.log("character search error")
 		var errorElem = showError(error);
 		$('.search-results').append(errorElem);
 	});
 };
 
-function getCoverImg(searchedName){
+function getCoverImg(inputId){
 	//call end point
 	var coverRequest = {
-		characterId:searchedName.id,
+		characters: inputId,
 		apikey: 'a7ad0b28f4e990a41a767a654ea505e1',
 	};
 	var coverResult = $.ajax({
@@ -153,15 +150,15 @@ function getCoverImg(searchedName){
 	})
 	.done(function(coverResult){
 		$.each(coverResult.data.results, function(i, item){
-			console.log(searchedName)
-			console.log(item);
+			console.log("runningimg"+item);
 			var coverInfo = showComic(item);
-			$('.coverResults').append(coverResults);
+			$('.coverResult').append(coverInfo);
  		});
 	})
 	.fail(function(jqXHR, error, errorThrown){
-		var errorElem = showError(error);
-		$('.search-results').append(errorElem);
+		console.log("cover image error")
+		// var errorElem = showError(error);
+		// $('.search-results').append(errorElem);
 	});
 };
 
