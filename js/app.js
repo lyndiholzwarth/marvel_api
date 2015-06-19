@@ -100,19 +100,11 @@ var showCharacter = function(searchedName) {
 
 // Set comic covers
 var showComic = function(coverImg) {
-	$.each(coverImg, function(item,i){
-		$('.cover-img').attr('src', coverImg.thumbnail.path + '/portrait_fantastic.'+ coverImg.thumbnail.extension);
-	})
-
-	// var coverResult = $('.cover-Result').clone();
+	var comicResult = $('.comicImage').clone();
+	var comicImage = comicResult.find('.cover-img');
+	$('.cover-img').attr('src','http://placehold.it/168x252?text=cover-img');
 	
-	// var comicCover = coverResult.find('.cover-img');
-	// comicCover.attr('src','http://placehold.it/168x252?text=cover-img');
-
-	console.log("cover info"+coverImg.title);
-
-
-	// return coverResult;
+	return comicResult;
 };
 
 //character search function
