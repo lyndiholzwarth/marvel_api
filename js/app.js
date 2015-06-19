@@ -67,14 +67,16 @@ var showCharacter = function(searchedName) {
 	if (searchedName.comics.available>0){
 		var inputId=searchedName.id;
 		console.log("comics here!")
-		getCoverImg(inputId);
+		for(i = 0; i < 5; i++){
+			getCoverImg(inputId);
+		}
 	}
 	else{
 		console.log("no comics")
 	};
 
 //for each comic, load img
-	// http://placcehold.it/168x252?text=cover-img
+	// http://placehold.it/168x252?text=cover-img
 
 
 	// set events
@@ -98,15 +100,19 @@ var showCharacter = function(searchedName) {
 
 // Set comic covers
 var showComic = function(coverImg) {
-	var coverResult = $('.template .coverResult').clone();
-	
-	var comicCover=coverResult.find('.cover-img');
-	
-	comicCover.attr('src', 'http://placcehold.it/168x252?text=cover-img')
-		// coverImg.thumbnail.path+'/portrait_fantastic.'+ coverImg.thumbnail.extension);
-	console.log("cover info"+coverImg.title)
+	$.each(coverImg, function(item,i){
+		$('.cover-img').attr('src', coverImg.thumbnail.path + '/portrait_fantastic.'+ coverImg.thumbnail.extension);
+	})
 
-	return coverResult;
+	// var coverResult = $('.cover-Result').clone();
+	
+	// var comicCover = coverResult.find('.cover-img');
+	// comicCover.attr('src','http://placehold.it/168x252?text=cover-img');
+
+	console.log("cover info"+coverImg.title);
+
+
+	// return coverResult;
 };
 
 //character search function
@@ -150,9 +156,9 @@ function getCoverImg(inputId){
 	})
 	.done(function(coverResult){
 		$.each(coverResult.data.results, function(i, item){
-			console.log("runningimg"+item);
+			console.log("running img"+item);
 			var coverInfo = showComic(item);
-			$('.coverResult').append(coverInfo);
+			$('.cover-Result').append(coverInfo);
  		});
 	})
 	.fail(function(jqXHR, error, errorThrown){
