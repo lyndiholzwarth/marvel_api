@@ -63,16 +63,20 @@ var showCharacter = function(searchedName) {
 
 	//if searched name, has comics to show, show them, if not, do nothing
 	// to show comics, use id# to run through "get request"
-	
-	if (searchedName.comics.available>0){
-		var inputId=searchedName.id;
-		console.log("comics here!")
-		for(i = 0; i < 5; i++){
-			getCoverImg(inputId);
-		}
+	var comicInfo = result.find('.comicInfo');
+	var placeholder2=result.find('#placeholder2');
+	console.log("comic number"+searchedName.comics.available);
+	if (searchedName.comics.available===0){
+		console.log("no comics");
+		comicInfo.empty();
+		placeholder2.text("Sorry, no comics to show");
 	}
 	else{
-		console.log("no comics")
+		var inputId=searchedName.id;
+		console.log("comics here!"+searchedName.id);
+		
+		getCoverImg(inputId);
+		
 	};
 
 //for each comic, load img
@@ -99,13 +103,16 @@ var showCharacter = function(searchedName) {
 };
 
 // Set comic covers
-var showComic = function(coverImg) {
-	var comicResult = $('.comicImage').clone();
-	var comicImage = comicResult.find('.cover-img');
-	$('.cover-img').attr('src','http://placehold.it/168x252?text=cover-img');
-	
-	return comicResult;
-};
+// var showComic = function(coverImg) {
+// 	// var comicResult = $('.template .comicImage').clone();
+// console.log(coverImg);
+// 	// var comicImage = comicResult.find('.cover-img');
+// 	$('.cover-img.1').attr('src',coverImg.thumbnail.path + '/portrait_fantastic.'+ coverImg.thumbnail.extension);
+// 	$('.cover-img.2').attr('src','http://placehold.it/168x252?text=cover-img');
+// 	$('.cover-img.3').attr('src','http://placehold.it/168x252?text=cover-img');
+
+// 	// return comicResult;
+// };
 
 //character search function
 function getRequest(searchTerm){
@@ -148,13 +155,15 @@ function getCoverImg(inputId){
 	})
 	.done(function(coverResult){
 		$.each(coverResult.data.results, function(i, item){
-			console.log("running img"+item);
-			var coverInfo = showComic(item);
-			$('.cover-Result').append(coverInfo);
+			console.log(item);
+			$('.cover-img.1').attr('src', item.thumbnail.path + '/portrait_fantastic.'+ item.thumbnail.extension);
+			$('.cover-img.2').attr('src','http://placehold.it/168x252?text=cover-img2');
+			$('.cover-img.3').attr('src','http://placehold.it/168x252?text=cover-img3');
+	
  		});
 	})
 	.fail(function(jqXHR, error, errorThrown){
-		console.log("cover image error")
+		console.log("cover image error");
 		// var errorElem = showError(error);
 		// $('.search-results').append(errorElem);
 	});
@@ -176,7 +185,7 @@ function getEvents(givenIdNumber){
 	.done(function(eventResult){
 		console.log(eventResult)
 	})
-}
+};
 
 
 
