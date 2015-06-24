@@ -88,7 +88,7 @@ header.sticky {
 	float: right;
 	margin-right: 40px;
 	height:250px;
-	padding-left: 10px;
+	padding-left: 40px;
 	padding-bottom: 10px;
 }
 
@@ -104,13 +104,30 @@ header.sticky {
 	margin-bottom: 5px;
 }
 
+.description{
+	min-height: 150px;
+}
+
 .cover-img{
 	height: 250px;
 	margin-bottom: 25px;
 	z-index: -1;
+	padding-right: 15px;
+	float: left;
+	display: inline;
+}
+
+.right{
+	display: inline;
 }
 
 .eventsLink{
+	color:#000;
+	text-decoration: none;
+}
+
+.eventsLink:hover{
+	color:red;
 
 }
 
