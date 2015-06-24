@@ -84,7 +84,7 @@ function getRequest(searchTerm){
 	.done(function(result){
 	var searchResults = result.data.results;
 	if (searchResults.length===0){
-		$('.results').append("There are no Mavel characters whose name starts with those letters. Please try something else.").addClass('noResult');
+		$('.results').append("There are no Marvel characters whose name starts with those letters. Please try something else.").addClass('noResult');
 	}
 	else{
 		$('.results').removeClass('noResult');
