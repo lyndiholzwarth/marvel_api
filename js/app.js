@@ -60,7 +60,9 @@ var showCharacter = function(searchedName) {
 	};
 
 	var inputId=searchedName.id;
+	//set major events
 	getEvents(inputId);
+	//set cover images
 	getCoverImg(inputId);
 
 	return result;
@@ -80,19 +82,26 @@ function getRequest(searchTerm){
 		type: "GET",
 	})
 	.done(function(result){
+	var searchResults = result.data.results;
+	if (searchResults.length===0){
+		$('.results').append("There are no Mavel characters whose name starts with those letters. Please try something else.").addClass('noResult');
+	}
+	else{
+		$('.results').removeClass('noResult');
 		$.each(result.data.results, function(i, item){
 			console.log(item);
 			var characterInfo = showCharacter(item);
 			$('.results').append(characterInfo);
  		});
+	}
 	})
 	.fail(function(jqXHR, error, errorThrown){
-		console.log("character search error")
 		var errorElem = showError(error);
-		$('.search-results').append(errorElem);
+		$('.result').append(errorElem);
 	});
 };
 
+//comic cover search function
 function getCoverImg(inputId){
 		var coverRequest = {
 			characters: inputId,
@@ -127,13 +136,12 @@ function getCoverImg(inputId){
 	 		}
 		})
 		.fail(function(jqXHR, error, errorThrown){
-			console.log("cover image error");
-			// var errorElem = showError(error);
-			// $('.search-results').append(errorElem);
+			var errorElem = showError(error);
+			$('.result').append(errorElem);
 		});
 };
 
-//event call function
+//major event search function
 function getEvents(inputId){
 	var eventRequest = {
 	characters: inputId,
@@ -174,12 +182,15 @@ function getEvents(inputId){
 	      		}
       		};
 	})
-	// .fail(){
-	// 	console.log("error in events")
-	// }
+	.fail(function(jqXHR, error, errorThrown){
+		var errorElem = showError(error);
+		$('.result').append(errorElem);
+	});
 };
 
-
-
-
-
+// takes error string and turns it into displayable DOM element
+var showError = function(error){
+	var errorElem = $('.templates .error').clone();
+	var errorText = '<p>' + error + '</p>';
+	errorElem.append(errorText);
+};
