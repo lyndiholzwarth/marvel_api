@@ -27,11 +27,11 @@ header.sticky {
 
 .topNav{
 	font-family: 'Roboto', sans-serif;
-	font-size: 48pt;
+	font-size: 46pt;
 	color:#E6E6E6;
-	margin-left: 425px;
+	float: right;
+	padding-right: 8%;
 	padding-top: 15px;
-	padding-left: -50px;
 }
 
 .topNav.sticky{
@@ -63,6 +63,7 @@ header.sticky {
 	margin-top: 200px;	
 	margin-bottom: 25px;
 	text-align: center;
+	line-height: 1.2;
 }
 
 .searchbox{
@@ -167,7 +168,7 @@ footer{
 	
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1100px) {
 	.topNav{
 		font-size: 30pt;
 		padding-top: 25px;
@@ -191,7 +192,7 @@ footer{
 }
 
 
-@media only screen and (max-width: 790px) {
+@media only screen and (max-width: 900px) {
 	.topNav{
 		font-size: 24pt;
 		padding-top: 15px;
@@ -216,8 +217,49 @@ footer{
 		padding-left: 5px;
 		padding-right: 5px;
 	}
+
+	.marvelLogo{
+		height:100px;
+	}
+
+	header{
+		height: 125px;
+	}
 }
 
+@media only screen and (max-width: 680px) {
+	.topNav{
+		font-size: 24pt;
+		padding-top: 15px;
+	}
 
+	.topNav.sticky{
+		font-size: 14pt;
+	}
+
+	.marvelLogo{
+		height:75px;
+	}
+
+	header{
+		height: 85px;
+	}
+
+	.result{
+		padding: 5px;
+	}
+
+	.characterImg{
+		float: left;
+		padding-left: 0px;
+		margin-right: 10px;
+	}
+
+	.cover-img{
+		float: left;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+}
 
 
